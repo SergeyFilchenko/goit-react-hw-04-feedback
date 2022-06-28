@@ -1,16 +1,16 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import s from './FeedbackOptions.module.css';
 
-export default function FeedbackOptions({ options, onLeaveFeeedback }) {
+export default function FeedbackOptions({ options, updateQuantityFeedbeacks }) {
   return (
     <div>
       <ul className={s.list}>
-        {Object.keys(options).map(key => (
+        {options.map(key => (
           <li key={key} className={s.item}>
             <button
               className={s.button}
               type="button"
-              onClick={onLeaveFeeedback}
+              onClick={updateQuantityFeedbeacks}
               id={key}
             >
               {key}
@@ -23,10 +23,6 @@ export default function FeedbackOptions({ options, onLeaveFeeedback }) {
 }
 
 FeedbackOptions.propTypes = {
-  options: propTypes.shape({
-    good: propTypes.number.isRequired,
-    neutral: propTypes.string.isRequired,
-    bad: propTypes.string.isRequired,
-  }),
-  onLeaveFeeedback: propTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateQuantityFeedbeacks: PropTypes.func.isRequired,
 };

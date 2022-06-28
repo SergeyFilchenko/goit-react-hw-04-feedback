@@ -4,20 +4,11 @@ import Section from './components/Section/Section';
 import Statistics from 'components/Statistics/Statistics';
 import NotificationMessage from 'components/NotificationMessage/NotificationMessage';
 
-function App() {
+export default function App() {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  // state = {
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0,
-  // };
 
-  // updateQuantityFeedbeacks = e => {
-  //   const key = e.target.id;
-  //   this.setState(ps => ({ [key]: ps[key] + 1 }));
-  // };
   const updateQuantityFeedbeacks = e => {
     switch (e.target.id) {
       case 'good':
@@ -34,37 +25,23 @@ function App() {
     }
   };
 
-  // countTotalFeedback = () =>
-  //   Object.values(this.state).reduce((acc, value) => acc + value, 0);
-
   const countTotalFeedback = () =>
     Object.values({ good, neutral, bad }).reduce(
       (acc, value) => acc + value,
       0
     );
 
-  // countPositiveFeedbackPercentage = total =>
-  //   `${Math.round((this.state.good / total) * 100)}%`;
-
-  // const { good, neutral, bad } = this.state;
-
   const total = countTotalFeedback();
 
   const countPositiveFeedbackPercentage = () =>
     `${Math.round((good / total) * 100)}%`;
 
-  // const {
-  //   updateQuantityFeedbeacks,
-  //   countTotalFeedback,
-  //   countPositiveFeedbackPercentage,
-  // } = this;
-
   return (
     <div>
-      <Section title="Please leave FeedBack">
+      <Section title="Please leave feedbeack">
         <FeedbackOptions
-          options={this.state}
-          onLeaveFeeedback={updateQuantityFeedbeacks}
+          options={['good', 'neutral', 'bad']}
+          updateQuantityFeedbeacks={updateQuantityFeedbeacks}
         />
       </Section>
 
@@ -84,5 +61,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
